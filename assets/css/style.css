@@ -1,0 +1,62 @@
+body {
+    background: url(../images/GOG.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1 {
+    color: #7a143a;
+    margin: 10px;
+    font-family: 'Bangers', cursive;
+    font-size: 48px;
+}
+
+.btn-primary {
+    font-family: 'Bangers', cursive;
+    padding: 20px 100px;
+    margin: 20px; 
+    background-color: #7a143a;
+    color: #f8b488;
+    border: 1px solid #f8b488;
+}
+
+.btn-primary:hover {
+    background-color: #ec4276;
+    color: #f8b488;
+    border: 1px solid #f8b488;
+}
+
+.timer-row {
+    font-size: 28px;
+    color: #7a143a;
+    padding: 10px;
+}
+
+.question-content {
+    background-color: #f6bfc3;
+    color: #ec4276;
+    border: 1px solid #ec4276;
+    padding: 25px;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.answer-options:hover {
+    color: #7a143a;
+}
+
+.result {
+    color: #7a143a;
+}
+
+.try-again:hover {
+    color: #7a143a;
+}
+
+img {
+    width: 400px;
+    height: auto;
+}

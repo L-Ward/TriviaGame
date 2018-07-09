@@ -5,18 +5,83 @@ $(document).ready(function () {
             {
                 question: "What is Star-Lord's real name?",
                 answers: ["Peter Dinklage", "Peter Parker", "Peter Venkman", "Peter Quill"],
-                indexOfCorrectAnswer: 3
+                indexOfCorrectAnswer: 3,
+                img: function () {
+                    var img = new Image();
+                    img.src = "assets/images/starlord.gif";
+                    return img;
+                }
             },
             {
                 question: "The first scene of the movie takes place on Earth in what year?",
                 answers: ["1988", "1985", "1987", "1980"],
-                indexOfCorrectAnswer: 0
+                indexOfCorrectAnswer: 0,
+                img: function () {
+                    var img = new Image();
+                    img.src = "assets/images/starlord.gif";
+                    return img;
+                }
+            },
+            {
+                question: "What is the name on the mix tape young Peter is listening to at the hospital?",
+                answers: ["Music Volume 1", "80s Hits 1", "Awesome Mix Vol. 1", "Star's Music Mix 1"],
+                indexOfCorrectAnswer: 2,
+                img: function () {
+                var img = new Image();
+                img.src = "assets/images/awesome-mix.gif";
+                return img;
+                }
+            },
+            {
+                question: "Which of the Guardian of the Galaxy is the result of an illegal genetic experiment on a lower life form?",
+                answers: ["Groot", "Rocket", "Gamora", "Drax"],
+                indexOfCorrectAnswer: 1,
+                img: function () {
+                var img = new Image();
+                img.src = "assets/images/Rocket.gif";
+                return img;
+                }
+            },
+            {
+                question: "At the prison, what color is the clothing all prisoners are wearing?",
+                answers: ["yellow", "brown", "orange", "black"],
+                indexOfCorrectAnswer: 0,
+                img: function () {
+                var img = new Image();
+                img.src = "assets/images/yellow-clothes.gif";
+                return img;
+                }
+            },
+            {
+                question: "While in prison, Rocket asks the others to retrieve 3 items for their escape. A guard's security band, a quarnex batter, what is the third item?",
+                answers: ["A small explosive", "An electronic eye", "A guard's communication device", "A prosthetic leg"],
+                indexOfCorrectAnswer: 3,
+                img: function () {
+                var img = new Image();
+                img.src = "assets/images/leg.gif";
+                return img;
+                }
+            },
+            {
+                question: "What media device does Peter Quill keep with him?",
+                answers: ["An iPod", "A walkman", "A Zune", "A discman"],
+                indexOfCorrectAnswer: 1,
+                img: function () {
+                var img = new Image();
+                img.src = "assets/images/walkman.gif";
+                return img;
+                }
+            },
+            {
+                question: "On Peter's ship Gamora claimed it was dirty. Peter said that if he had what, it would look like a Jackson Pollocl painting?",
+                answers: ["A sponge", "A coat of Paint", "A blacklight", "A cleaner"],
+                indexOfCorrectAnswer: 2,
+                img: function () {
+                var img = new Image();
+                img.src = "assets/images/black-light.gif";
+                return img;
+                }
             }
-            // {
-            //     question: "",
-            //     answers: ["", "", "", ""],
-            //     indexOfCorrectAnswer:
-            // }
         ]
     }
     var displayQuestion;
@@ -30,12 +95,10 @@ $(document).ready(function () {
     var incorrectAnswers = 0;
     var unanswered = 0;
 
-
     startScreenBuilder();
 
     //functions
-    //BUILDERS -- Screen Builders
-
+    //BUILDERS
     //Start Screen
     function startScreenBuilder() {
         //create screen content
@@ -46,7 +109,7 @@ $(document).ready(function () {
         //append content
         $(startCol).append(startBtn)
         $(startRow).append(startCol);
-        $(".container").append(startRow);
+        $(".container-js-content").append(startRow);
         $(".start-button").click
 
         //move to next screen
@@ -57,7 +120,7 @@ $(document).ready(function () {
     function questionScreenBuilder() {
         if (questionCounter < game.questions.length) {
             //timer
-            var timerRow = $("<div>").addClass("row justify-content-center");
+            var timerRow = $("<div>").addClass("row justify-content-center timer-row");
             var timerCol = $("<div>").addClass("col-xs-12 timer-col");
             //question
             var questionRow = $("<div>").addClass("row justify-content-center question-row");
@@ -65,14 +128,14 @@ $(document).ready(function () {
 
             //append and display timer
             $(timerRow).append(timerCol);
-            $(".container").append(timerRow);
+            $(".container-js-content").addClass("question-content").append(timerRow);
             timer();
 
             // append and display questions
             displayQuestion = game.questions[questionCounter].question;
             $(questionRow).append(questionCol);
             $(questionCol).append(displayQuestion);
-            $(".container").append(questionRow);
+            $(".container-js-content").append(questionRow);
 
             //Answers
             //looping through answer array to list answers
@@ -83,7 +146,7 @@ $(document).ready(function () {
                 //appending answers
                 $(answerRow).append(answerCol);
                 $(answerCol).append(game.questions[questionCounter].answers[i]);
-                $(".container").append(answerRow);
+                $(".container-js-content").append(answerRow);
             }
             //get player's answer
             $(".answer-options").click(answerSelection);
@@ -96,26 +159,33 @@ $(document).ready(function () {
     //Answer Screen
     function resultScreenBuilder() {
         // result of user input: correct, incorrect or out of time
-        var resultRow = $("<div>").addClass("row justify-content-center");
+        var resultRow = $("<div>").addClass("row justify-content-center result");
         var resultCol = $("<div>").addClass("col-xs-12 result-col");
         //display correct answer
         var correctAnswerRow = $("<div>").addClass("row justify-content-center");
         var correctAnswerCol = $("<div>").addClass("col-xs-12");
         var indexOfAnswer = game.questions[questionCounter].indexOfCorrectAnswer;
         var answer = game.questions[questionCounter].answers[indexOfAnswer];
-
+        //GIF container
+        var gifRow = $("<div>").addClass("row justify-content-center result");
+        var gifCol = $("<div>").addClass("col-xs-12 image-container");
         // append and display results
         $(resultRow).append(resultCol);
-        $(".container").append(resultRow);
+        $(".container-js-content").append(resultRow);
 
         //display correct answer
         if (playerAnswer != indexOfAnswer) {
             $(correctAnswerCol).text("The correct answer is: " + answer + ".");
             $(correctAnswerRow).append(correctAnswerCol);
-            $(".container").append(correctAnswerRow);
+            $(".container-js-content").append(correctAnswerRow);
         }
 
-        //ADD GIFS!!!!!!!!!!!
+        //display GIFs
+        $(gifCol).append(game.questions[questionCounter].img());
+        $(gifRow).append(gifCol);
+        $(".container-js-content").append(gifRow);
+
+
 
         //Move to next screen after 5 seconds
         resultIntervalId = setInterval(nextQuestion, 5000);
@@ -145,7 +215,7 @@ $(document).ready(function () {
         $(incorrectRow).append(incorrectCol);
         $(unasweredRow).append(unasweredCol);
         $(startOverRow).append(startOverCol);
-        $(".container").append(finishedRow, correctRow, incorrectRow, unasweredRow, startOverRow);
+        $(".container-js-content").append(finishedRow, correctRow, incorrectRow, unasweredRow, startOverRow);
         
         $(".try-again").click(tryAgain);
     }
@@ -238,9 +308,9 @@ $(document).ready(function () {
         }
     }
 
-    //empty container div
+    //empty container-js-content div
     function empty() {
-        $(".container").empty();
+        $(".container-js-content").empty();
     }
 
 });

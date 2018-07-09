@@ -13,12 +13,12 @@ $(document).ready(function () {
                 }
             },
             {
-                question: "The first scene of the movie takes place on Earth in what year?",
-                answers: ["1988", "1985", "1987", "1980"],
+                question: "In the fight which lead to the Guardians of the Galaxy getting arrested on Zandar, what body body parts did Groot have cut off by Gamora?",
+                answers: ["Arms", "Legs", "Head", "One arm and one leg"],
                 indexOfCorrectAnswer: 0,
                 img: function () {
                     var img = new Image();
-                    img.src = "assets/images/starlord.gif";
+                    img.src = "assets/images/Groot.gif";
                     return img;
                 }
             },

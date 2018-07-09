@@ -16,6 +16,7 @@ h1 {
 
 .btn-primary {
     font-family: 'Bangers', cursive;
+    font-size: 24px;
     padding: 20px 100px;
     margin: 20px; 
     background-color: #7a143a;
@@ -38,7 +39,7 @@ h1 {
 .question-content {
     background-color: #f6bfc3;
     color: #ec4276;
-    border: 1px solid #ec4276;
+    border: 3px solid #ec4276;
     padding: 25px;
     max-width: 500px;
     max-height: 500px;
@@ -50,10 +51,16 @@ h1 {
 
 .result {
     color: #7a143a;
+    font-family: 'Bangers', cursive;
+}
+
+.try-again {
+    font-family: 'Bangers', cursive;
+    color: #7a143a;
 }
 
 .try-again:hover {
-    color: #7a143a;
+    color: #ec4276;
 }
 
 img {
